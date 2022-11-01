@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-xs-12">
+        <img [src]="recipe?recipe.imagePath:'https://www.inkling.com/wp-content/uploads/2021/06/SD-default-image.png'" 
+        [alt]="recipe?recipe.name:'name'" 
+        class="image-responsive" 
+        style="max-width:400px;">
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-xs-12">
+       <h1 [innerText]="recipe?recipe.name:'Name'">(</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="btn-group" appDropdown>
+            <button
+            type="button"
+            class="btn btn-primary dropdown-toggle">
+            Manage Recipe <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a (click)="onAddShoppingList(recipe.ingredients)" style="cursor:pointer;">To Shopping List</a></li>
+                <li><a style="cursor:pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
+                <li><a style="cursor:pointer;" (click)="onDeleteRecipe()">Delete Recipe</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12" [innerText]="recipe?recipe.description:'Description'">
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="list-group">
+            <li 
+            class="list-group-item"
+            *ngFor="let ingredients of (recipe?recipe.ingredients:[])"
+            [innerText]="ingredients?ingredients.name + ':' + ingredients.amount: 'name : amount'">
+            </li>
+        </ul>
+    </div>
+</div>
